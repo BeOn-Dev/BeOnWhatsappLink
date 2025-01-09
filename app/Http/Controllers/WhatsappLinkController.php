@@ -48,7 +48,7 @@ class WhatsappLinkController extends Controller
         $reference = Session::get('reference');
 
         Log::info($data);
-        Log::info($reference);
+        Log::info("reference: " .$reference);
 //        $phone = $data->phone;
         if($data['reference'] == $reference)
         {
