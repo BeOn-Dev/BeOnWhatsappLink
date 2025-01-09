@@ -66,7 +66,7 @@ class WhatsappLinkController extends Controller
             session()->start();
             Session::put('authenticated', true);
             session()->save();
-            Log::info(Session::get('authenticated'));
+            Log::info(Session::getId());
             return true;
         }
         Log::info($data['reference']);
@@ -79,6 +79,6 @@ class WhatsappLinkController extends Controller
 
     public function checkStatus()
     {
-        return response()->json(['authenticated' => Session::get('authenticated')]);
+        return response()->json(['authenticated' => Session::get('authenticated'), 'sessionId' => Session::getId()]);
     }
 }
