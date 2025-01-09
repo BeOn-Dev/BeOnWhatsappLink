@@ -57,6 +57,7 @@ class WhatsappLinkController extends Controller
         if($data['reference'] == $reference->reference)
         {
             Log::info("yes matched");
+            Log::info($data);
             $user = User::firstOrCreate(
                 ['phone' => $data['clientPhone']],
                 ['name' => $data['clientName']]
