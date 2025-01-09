@@ -71,8 +71,7 @@
             });
         }
 
-        // Poll the server every 2 seconds
-        setInterval(checkAuthentication, 2000);
+        setInterval(checkAuthentication, 4000);
     });
 </script>
 </body>
