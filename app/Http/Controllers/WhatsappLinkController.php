@@ -45,9 +45,11 @@ class WhatsappLinkController extends Controller
     public function callback(Request $request)
     {
         $data = $request->all();
-        Log::info($data);
-//        $phone = $data->phone;
         $reference = Session::get('reference');
+
+        Log::info($data);
+        Log::info($reference);
+//        $phone = $data->phone;
         if($data['reference'] == $reference)
         {
             Log::info("yes matched");
