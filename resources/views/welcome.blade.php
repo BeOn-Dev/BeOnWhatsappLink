@@ -50,7 +50,7 @@
 <script>
     $(document).ready(function () {
         // URLs
-        const authStatusUrl = @json(route('check-auth-status'));
+        const authStatusUrl = @json(route('check-auth-status',$reference));
         const dashboardUrl = @json(route('dashboard'));
 
         // Function to check authentication status

@@ -10,4 +10,4 @@ Route::get('/dashboard', function () {
 
 Route::get('webhook/beon', [\App\Http\Controllers\WhatsappLinkController::class,'callback']);
 
-Route::get('/check-auth-status', [\App\Http\Controllers\WhatsappLinkController::class, 'checkStatus'])->name('check-auth-status');
+Route::get('/check-auth-status/{reference}', [\App\Http\Controllers\WhatsappLinkController::class, 'checkStatus'])->name('check-auth-status');

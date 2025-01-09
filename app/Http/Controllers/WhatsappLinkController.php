@@ -42,7 +42,7 @@ class WhatsappLinkController extends Controller
             'reference' => $reference
         ]);
 
-        return view('welcome', compact('responseBody'));
+        return view('welcome', compact('responseBody','reference'));
     }
 
     public function callback(Request $request)
