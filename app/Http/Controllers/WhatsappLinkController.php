@@ -50,7 +50,10 @@ class WhatsappLinkController extends Controller
         $reference = Session::get('reference');
         if($data['reference'] == $reference)
         {
-            $user = User::firstOrCreate(['phone' => $data['clientPhone']]);
+            $user = User::firstOrCreate(
+                ['phone' => $data['clientPhone']],
+                ['name' => $data['clientName']]
+            );
             Auth::login($user);
             Session::forget(['reference']);
             Session::put('authenticated', true);
