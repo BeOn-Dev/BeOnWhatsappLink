@@ -3,10 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',function(){
-
-
-});
+Route::get('/',[\App\Http\Controllers\WhatsappLinkController::class,'login']);
 
 Route::get('webhook/beon', function(Request $request){
 
