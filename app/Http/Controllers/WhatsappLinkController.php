@@ -64,17 +64,18 @@ class WhatsappLinkController extends Controller
             );
             Auth::login($user);
             Session::put('authenticated', true);
+            return true;
         }
         Log::info($data['reference']);
         Log::info($reference);
         Log::info("not matched");
 
-        return true;
+        return false;
     }
 
 
     public function checkStatus()
     {
-        return response()->json(['authenticated' => Session::get('authenticated', false)]);
+        return response()->json(['authenticated' => Session::get('authenticated')]);
     }
 }
