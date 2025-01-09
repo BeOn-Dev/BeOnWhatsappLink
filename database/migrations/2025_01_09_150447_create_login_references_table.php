@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('login_references', function (Blueprint $table) {
             $table->id();
             $table->string('reference');
+            $table->boolean('authenticated')->default(false);
             $table->timestamps();
         });
     }

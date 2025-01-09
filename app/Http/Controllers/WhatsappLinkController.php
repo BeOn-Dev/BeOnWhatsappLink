@@ -58,15 +58,14 @@ class WhatsappLinkController extends Controller
 
         if($data['reference'] == $reference->reference)
         {
-            Log::info("yes matched");
-            Log::info($data);
+            $reference->update([
+                'authenticated' => true
+            ]);
             $user = User::firstOrCreate(
                 ['phone' => $data['clientPhone']],
                 ['name' => $data['clientName']]
             );
-//            Auth::login($user);
-            session()->put('authenticated', true);
-            Log::info(Session::getId());
+            Auth::login($user);
             return true;
         }
         Log::info($data['reference']);
@@ -77,8 +76,13 @@ class WhatsappLinkController extends Controller
     }
 
 
-    public function checkStatus()
+    public function checkStatus($reference)
     {
-        return response()->json(['authenticated' => session()->get('authenticated'), 'sessionId' => Session::getId()]);
+        $reference = LoginReference::where([
+            ['reference', $reference],
+            ['authenticated', true]
+        ])->exists();
+
+        return response()->json(['authenticated' => $reference]);
     }
 }
