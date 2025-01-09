@@ -60,7 +60,6 @@ class WhatsappLinkController extends Controller
                 ['name' => $data['clientName']]
             );
             Auth::login($user);
-            Session::forget(['reference']);
             Session::put('authenticated', true);
         }
 
