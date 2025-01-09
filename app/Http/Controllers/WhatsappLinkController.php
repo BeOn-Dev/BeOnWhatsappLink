@@ -45,15 +45,15 @@ class WhatsappLinkController extends Controller
     public function callback(Request $request)
     {
         $data = $request->all();
-        Log::info($data['reference']);
+        Log::info($data);
 //        $phone = $data->phone;
-//        $reference = Session::get('reference');
-//        if($data->reference == $reference)
-//        {
-//            $user = User::firstOrCreate(['phone' => $phone]);
-//            Auth::login($user);
-//            Session::forget(['otp']);
-//        }
+        $reference = Session::get('reference');
+        if($data['reference'] == $reference)
+        {
+            $user = User::firstOrCreate(['phone' => $data['phone']]);
+            Auth::login($user);
+            Session::forget(['reference']);
+        }
 
     }
 }
