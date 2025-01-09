@@ -29,15 +29,51 @@
             color: #fff;
             font-size: 16px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         .form-container a:hover {
             background-color: #4ee321;
         }
     </style>
+    <!-- Add jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <div class="form-container">
-    <a href="{{$responseBody['data']['link']}}" target="_blank">Login With Whatsapp</a>
+    <!-- Blade Syntax for Link -->
+    <a href="{{ $responseBody['data']['link'] }}" target="_blank">Login With WhatsApp</a>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // URLs
+        const authStatusUrl = @json(route('check-auth-status'));
+        const dashboardUrl = @json(route('dashboard'));
+
+        // Function to check authentication status
+        function checkAuthentication() {
+            console.log('Checking authentication status...');
+            $.ajax({
+                url: authStatusUrl,
+                type: 'GET',
+                success: function (response) {
+                    if (response.authenticated) {
+                        // Redirect to the dashboard if authenticated
+                        window.location.href = dashboardUrl;
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error checking authentication status:', error);
+                }
+            });
+        }
+
+        // Poll the server every 2 seconds
+        setInterval(checkAuthentication, 2000);
+    });
+</script>
 </body>
 </html>
