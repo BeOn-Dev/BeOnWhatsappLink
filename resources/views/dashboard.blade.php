@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>
-    Dashboard, user auth {{auth()->user()->name}}
+    Dashboard, user auth
 </h1>
 </body>
 </html>
