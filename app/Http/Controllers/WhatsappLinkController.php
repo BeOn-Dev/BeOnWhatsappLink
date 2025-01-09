@@ -82,6 +82,10 @@ class WhatsappLinkController extends Controller
             ['reference', $reference],
             ['authenticated', true]
         ])->exists();
+        if($reference)
+        {
+            LoginReference::where('reference', $reference)->delete();
+        }
 
         return response()->json(['authenticated' => $reference]);
     }
