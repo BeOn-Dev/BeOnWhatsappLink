@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LoginReference;
 use App\Models\User;
 use App\Models\UserLoginSession;
 use GuzzleHttp\Client;
@@ -35,10 +36,9 @@ class WhatsappLinkController extends Controller
 
         $responseBody = json_decode($response->getBody(), true);
 
-        Session::put('reference', $reference);
-        Log::info("Session ID: " . Session::getId());
-
-    Log::info("session start:" . Session::get('reference'));
+        LoginReference::create([
+            'reference' => $reference
+        ]);
 
         return view('welcome', compact('responseBody'));
     }
@@ -46,13 +46,12 @@ class WhatsappLinkController extends Controller
     public function callback(Request $request)
     {
         $data = $request->all();
-        $reference = Session::get('reference');
+        $reference = LoginReference::where('reference',$data['reference'])->first();
+        if(!$reference)
+        {
+            return false;
+        }
 
-        Log::info("Session ID: " . Session::getId());
-
-        Log::info($data);
-        Log::info("reference: " .$reference);
-//        $phone = $data->phone;
         if($data['reference'] == $reference)
         {
             Log::info("yes matched");
@@ -63,10 +62,9 @@ class WhatsappLinkController extends Controller
             Auth::login($user);
             Session::forget(['reference']);
             Session::put('authenticated', true);
-
-            Log::info(Session::get('authenticated'));
         }
 
+        return true;
     }
 
 
