@@ -45,7 +45,7 @@ class WhatsappLinkController extends Controller
     public function callback(Request $request)
     {
         $data = $request->all();
-        Log::info($data);
+        Log::info($data['reference']);
 //        $phone = $data->phone;
 //        $reference = Session::get('reference');
 //        if($data->reference == $reference)
