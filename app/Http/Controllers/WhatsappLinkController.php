@@ -36,6 +36,7 @@ class WhatsappLinkController extends Controller
         $responseBody = json_decode($response->getBody(), true);
 
         Session::put('reference', $reference);
+        Log::info("Session ID: " . Session::getId());
 
     Log::info("session start:" . Session::get('reference'));
 
@@ -46,6 +47,8 @@ class WhatsappLinkController extends Controller
     {
         $data = $request->all();
         $reference = Session::get('reference');
+
+        Log::info("Session ID: " . Session::getId());
 
         Log::info($data);
         Log::info("reference: " .$reference);
