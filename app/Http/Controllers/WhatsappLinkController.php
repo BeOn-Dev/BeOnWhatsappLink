@@ -63,7 +63,9 @@ class WhatsappLinkController extends Controller
                 ['name' => $data['clientName']]
             );
 //            Auth::login($user);
+            session()->start();
             Session::put('authenticated', true);
+            session()->save();
             Log::info(Session::get('authenticated'));
             return true;
         }
