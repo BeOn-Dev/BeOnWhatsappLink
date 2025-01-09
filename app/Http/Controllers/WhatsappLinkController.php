@@ -50,6 +50,7 @@ class WhatsappLinkController extends Controller
         $reference = Session::get('reference');
         if($data['reference'] == $reference)
         {
+            Log::info("yes matched");
             $user = User::firstOrCreate(
                 ['phone' => $data['clientPhone']],
                 ['name' => $data['clientName']]
@@ -57,6 +58,8 @@ class WhatsappLinkController extends Controller
             Auth::login($user);
             Session::forget(['reference']);
             Session::put('authenticated', true);
+
+            Log::info(Session::get('authenticated'));
         }
 
     }
