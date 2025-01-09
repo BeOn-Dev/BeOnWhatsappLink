@@ -28,7 +28,9 @@ class WhatsappLinkController extends Controller
             'Content-Type' => 'application/json',
         ];
 
-        $client = new Client();
+        $client = new Client([
+            'cookies' => true,
+        ]);
         $response = $client->post('https://beon.chat/api/send/message/otp', [
             'headers' => $headers,
             'json' => $payload,
@@ -63,7 +65,6 @@ class WhatsappLinkController extends Controller
                 ['name' => $data['clientName']]
             );
 //            Auth::login($user);
-            session()->start();
             session()->put('authenticated', true);
             Log::info(Session::getId());
             return true;
