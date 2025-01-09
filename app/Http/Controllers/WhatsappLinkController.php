@@ -37,7 +37,7 @@ class WhatsappLinkController extends Controller
 
         Session::put('reference', $reference);
 
-//    dd($responseBody);
+    Log::info("session start:" . Session::get('reference'));
 
         return view('welcome', compact('responseBody'));
     }
