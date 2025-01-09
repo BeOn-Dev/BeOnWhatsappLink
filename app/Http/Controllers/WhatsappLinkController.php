@@ -49,6 +49,8 @@ class WhatsappLinkController extends Controller
         $reference = LoginReference::where('reference',$data['reference'])->first();
         if(!$reference)
         {
+            Log::info("not found");
+
             return false;
         }
 
@@ -62,6 +64,7 @@ class WhatsappLinkController extends Controller
             Auth::login($user);
             Session::put('authenticated', true);
         }
+        Log::info("not matched");
 
         return true;
     }
