@@ -5,47 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Input Form</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
+        .container {
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+
         }
+
         .form-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .form-container a {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #3cc012;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
+            width: 50%;
             text-align: center;
-        }
-        .form-container a:hover {
-            background-color: #4ee321;
         }
     </style>
     <!-- Add jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<div class="form-container">
-    <!-- Blade Syntax for Link -->
-    <a href="{{ $responseBody['data']['link'] }}" target="_blank">Login With WhatsApp</a>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{{asset('beon_logo.svg.svg')}}">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link active fs-3 text-primary mx-2" aria-current="page" href="#">BEON</a>--}}
+{{--                </li>--}}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="form-container w-50 m-auto h-100vh">
+        <!-- Blade Syntax for Link -->
+        <a href="{{ $responseBody['data']['link'] }}" class="btn btn-success w-100" target="_blank">Login With WhatsApp</a>
+    </div>
 </div>
+
 
 <script>
     $(document).ready(function () {
